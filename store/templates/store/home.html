@@ -1,0 +1,251 @@
+{% extends 'store/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block title %}Accueil - E-Book Store{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-6 py-12">
+    
+    <!-- Hero Section Moderne -->
+    <div class="relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[var(--accent)] to-[var(--primary)] rounded-3xl p-12 mb-16 shadow-2xl">
+        <!-- Motif de fond -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, var(--text-color) 1px, transparent 0); background-size: 40px 40px;"></div>
+        </div>
+        
+        <!-- Forme décorative -->
+        <div class="absolute -top-20 -right-20 w-64 h-64 bg-[var(--accent)] rounded-full blur-3xl opacity-30"></div>
+        <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-[var(--primary)] rounded-full blur-3xl opacity-30"></div>
+        
+        <div class="relative z-10 text-center max-w-3xl mx-auto">
+            <h2 class="text-5xl font-bold text-[var(--text-color)] mb-6 leading-tight">
+                Découvrez votre prochaine
+                <span class="block mt-2 bg-gradient-to-r from-[var(--text-color)] to-[var(--text-muted)] bg-clip-text text-transparent">
+                    aventure littéraire
+                </span>
+            </h2>
+            <p class="text-lg text-[var(--text-color)]/80 mb-8 leading-relaxed max-w-2xl mx-auto">
+                Explorez notre collection soigneusement sélectionnée d'e-books et téléchargez instantanément vos coups de cœur.
+            </p>
+            <a href="/books" class="inline-flex items-center gap-2 bg-[var(--text-color)] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[var(--text-muted)] transition-all duration-300 transform hover:scale-105 hover:shadow-xl">
+                Explorer la collection
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+
+    <!-- Section des livres populaires -->
+    <div class="mb-12">
+        <div class="flex items-center justify-between mb-8">
+            <div>
+                <h3 class="text-4xl font-bold text-[var(--text-color)] mb-2">E-Books Populaires</h3>
+                <div class="h-1 w-20 bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] rounded-full"></div>
+            </div>
+            <a href="/books" class="flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--text-color)] transition-colors duration-300 font-medium group">
+                Voir tout
+                <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                </svg>
+            </a>
+        </div>
+        
+        <!-- Grille de livres moderne -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            <!-- Carte de livre 1 -->
+            <div class="group bg-[var(--card-bg)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[var(--primary)]">
+                <div class="relative overflow-hidden">
+                    <img src="{% static 'images/book1.jpg' %}" alt="Book 1" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--text-color)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 flex gap-2">
+                            <button class="flex-1 bg-white text-[var(--text-color)] py-2 px-4 rounded-lg font-medium text-sm hover:bg-[var(--accent)] transition-colors duration-300">
+                                Aperçu
+                            </button>
+                            <button class="bg-[var(--primary)] text-[var(--text-color)] p-2 rounded-lg hover:bg-[var(--accent)] transition-colors duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-bold text-xl text-[var(--card-text)] mb-2 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300">
+                        Titre du Livre Captivant
+                    </h4>
+                    <p class="text-[var(--text-muted)] mb-4 flex items-center gap-2 text-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                        </svg>
+                        John Doe
+                    </p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-[var(--primary)]">12.99€</span>
+                        <div class="flex items-center gap-1 text-[var(--primary)]">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                            </svg>
+                            <span class="font-semibold">4.8</span>
+                            <span class="text-[var(--text-muted)] text-sm">(124)</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-[var(--accent)] text-[var(--text-color)] py-3 px-4 rounded-xl font-semibold hover:bg-[var(--primary)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        Ajouter au panier
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carte de livre 2 -->
+            <div class="group bg-[var(--card-bg)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[var(--primary)]">
+                <div class="relative overflow-hidden">
+                    <img src="{% static 'images/book2.jpg' %}" alt="Book 2" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 right-4 bg-[var(--primary)] text-[var(--text-color)] px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                        Bestseller
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--text-color)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 flex gap-2">
+                            <button class="flex-1 bg-white text-[var(--text-color)] py-2 px-4 rounded-lg font-medium text-sm hover:bg-[var(--accent)] transition-colors duration-300">
+                                Aperçu
+                            </button>
+                            <button class="bg-[var(--primary)] text-[var(--text-color)] p-2 rounded-lg hover:bg-[var(--accent)] transition-colors duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-bold text-xl text-[var(--card-text)] mb-2 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300">
+                        Titre du Livre Fascinant
+                    </h4>
+                    <p class="text-[var(--text-muted)] mb-4 flex items-center gap-2 text-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                        </svg>
+                        Jane Doe
+                    </p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-[var(--primary)]">15.99€</span>
+                        <div class="flex items-center gap-1 text-[var(--primary)]">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                            </svg>
+                            <span class="font-semibold">4.9</span>
+                            <span class="text-[var(--text-muted)] text-sm">(287)</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-[var(--accent)] text-[var(--text-color)] py-3 px-4 rounded-xl font-semibold hover:bg-[var(--primary)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        Ajouter au panier
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carte de livre 3 -->
+            <div class="group bg-[var(--card-bg)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[var(--primary)]">
+                <div class="relative overflow-hidden">
+                    <img src="{% static 'images/book1.jpg' %}" alt="Book 3" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute top-4 right-4 bg-[var(--text-color)] text-white px-3 py-1 rounded-full text-sm font-bold shadow-lg">
+                        Nouveau
+                    </div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--text-color)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 flex gap-2">
+                            <button class="flex-1 bg-white text-[var(--text-color)] py-2 px-4 rounded-lg font-medium text-sm hover:bg-[var(--accent)] transition-colors duration-300">
+                                Aperçu
+                            </button>
+                            <button class="bg-[var(--primary)] text-[var(--text-color)] p-2 rounded-lg hover:bg-[var(--accent)] transition-colors duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-bold text-xl text-[var(--card-text)] mb-2 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300">
+                        Titre du Livre Passionnant
+                    </h4>
+                    <p class="text-[var(--text-muted)] mb-4 flex items-center gap-2 text-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                        </svg>
+                        Alex Smith
+                    </p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-[var(--primary)]">14.99€</span>
+                        <div class="flex items-center gap-1 text-[var(--primary)]">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                            </svg>
+                            <span class="font-semibold">4.7</span>
+                            <span class="text-[var(--text-muted)] text-sm">(98)</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-[var(--accent)] text-[var(--text-color)] py-3 px-4 rounded-xl font-semibold hover:bg-[var(--primary)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        Ajouter au panier
+                    </button>
+                </div>
+            </div>
+
+            <!-- Carte de livre 4 -->
+            <div class="group bg-[var(--card-bg)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-transparent hover:border-[var(--primary)]">
+                <div class="relative overflow-hidden">
+                    <img src="{% static 'images/book2.jpg' %}" alt="Book 4" class="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110">
+                    <div class="absolute inset-0 bg-gradient-to-t from-[var(--text-color)]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 flex gap-2">
+                            <button class="flex-1 bg-white text-[var(--text-color)] py-2 px-4 rounded-lg font-medium text-sm hover:bg-[var(--accent)] transition-colors duration-300">
+                                Aperçu
+                            </button>
+                            <button class="bg-[var(--primary)] text-[var(--text-color)] p-2 rounded-lg hover:bg-[var(--accent)] transition-colors duration-300">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h4 class="font-bold text-xl text-[var(--card-text)] mb-2 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300">
+                        Titre du Livre Inspirant
+                    </h4>
+                    <p class="text-[var(--text-muted)] mb-4 flex items-center gap-2 text-sm">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"/>
+                        </svg>
+                        Marie Martin
+                    </p>
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-2xl font-bold text-[var(--primary)]">11.99€</span>
+                        <div class="flex items-center gap-1 text-[var(--primary)]">
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/>
+                            </svg>
+                            <span class="font-semibold">5.0</span>
+                            <span class="text-[var(--text-muted)] text-sm">(156)</span>
+                        </div>
+                    </div>
+                    <button class="w-full bg-[var(--accent)] text-[var(--text-color)] py-3 px-4 rounded-xl font-semibold hover:bg-[var(--primary)] transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                        </svg>
+                        Ajouter au panier
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+{% endblock %}

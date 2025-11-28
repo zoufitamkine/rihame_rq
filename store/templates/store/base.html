@@ -1,0 +1,81 @@
+{% load static %}
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}E-Book Store{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --bg-color: #F8F7F2;
+            --text-color: #2A2623;
+            --card-bg: #FBFAF7;
+            --card-text: #2A2623;
+            --accent: #E8D7B8;
+            --accent-text: #2A2623;
+            --border-color: #EFEDE7;
+            --text-muted: #8A837B;
+            --primary: #D3B689;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(251, 250, 247, 0.8);
+        }
+        
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, var(--card-bg), var(--accent));
+            padding: 2px;
+            border-radius: 1rem;
+        }
+        
+        .gradient-border-inner {
+            background: var(--card-bg);
+            border-radius: calc(1rem - 2px);
+        }
+        
+        .hover-lift {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(42, 38, 35, 0.12);
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-[var(--bg-color)] text-[var(--text-color)] font-sans smooth-scroll antialiased">
+
+    {% include 'store/header.html' %}
+
+    <main class="min-h-screen">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'store/footer.html' %}
+
+</body>
+</html>

@@ -1,0 +1,84 @@
+{% load static %}
+{% load i18n %}
+<header class="bg-[var(--primary)] shadow-lg sticky top-0 z-50 backdrop-blur-sm">
+    <div class="container mx-auto px-6 py-5">
+        <div class="flex justify-between items-center">
+            
+            <!-- Logo avec animation -->
+            <a href="/" class="group flex items-center gap-3">
+                <div class="relative">
+                    <div class="absolute inset-0 bg-[var(--accent)] rounded-lg blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
+                    <div class="relative bg-gradient-to-br from-[var(--text-color)] to-[var(--text-muted)] p-2 rounded-lg transform group-hover:scale-110 transition-transform duration-300">
+                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+                        </svg>
+                    </div>
+                </div>
+                <h1 class="text-[var(--text-color)] text-2xl font-bold tracking-tight group-hover:text-[var(--text-muted)] transition-colors duration-300">
+                    E-Book Store
+                </h1>
+            </a>
+            
+            <!-- Navigation moderne -->
+            <nav class="hidden md:block">
+                <ul class="flex items-center space-x-2">
+                    <li>
+                        <a href="/" class="relative px-4 py-2 text-[var(--text-color)] font-medium group overflow-hidden rounded-lg">
+                            <span class="relative z-10 group-hover:text-[var(--text-color)] transition-colors duration-300">Accueil</span>
+                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/books" class="relative px-4 py-2 text-[var(--text-color)] font-medium group overflow-hidden rounded-lg">
+                            <span class="relative z-10 group-hover:text-[var(--text-color)] transition-colors duration-300">Livres</span>
+                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/contact" class="relative px-4 py-2 text-[var(--text-color)] font-medium group overflow-hidden rounded-lg">
+                            <span class="relative z-10 group-hover:text-[var(--text-color)] transition-colors duration-300">Contact</span>
+                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
+                        </a>
+                    </li>
+                    
+                    <!-- Bouton recherche -->
+                    <li class="ml-2">
+                        <button class="p-2 rounded-lg bg-[var(--accent)] hover:bg-[var(--text-color)] text-[var(--text-color)] hover:text-white transition-all duration-300 transform hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                            </svg>
+                        </button>
+                    </li>
+                    
+                    <form action="{% url 'set_language' %}" method="post">
+  {% csrf_token %}
+  <select name="language">
+    <option value="fr" {% if LANGUAGE_CODE == 'fr' %}selected{% endif %}>Français</option>
+    <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+    <option value="ar" {% if LANGUAGE_CODE == 'ar' %}selected{% endif %}>العربية</option>
+  </select>
+  <button type="submit">{% trans "Changer" %}</button>
+</form>
+
+                    <!-- Panier -->
+                    <li>
+                        <button class="relative p-2 rounded-lg bg-[var(--text-color)] hover:bg-[var(--text-muted)] text-white transition-all duration-300 transform hover:scale-110">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
+                            </svg>
+                            <span class="absolute -top-1 -right-1 bg-[var(--accent)] text-[var(--text-color)] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+            
+            <!-- Menu mobile -->
+            <button class="md:hidden p-2 rounded-lg bg-[var(--accent)] hover:bg-[var(--text-color)] text-[var(--text-color)] hover:text-white transition-all duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+            </button>
+            
+        </div>
+    </div>
+</header>
