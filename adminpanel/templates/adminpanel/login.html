@@ -1,0 +1,49 @@
+{% load i18n %}
+<!doctype html>
+{% get_current_language as LANGUAGE_CODE %}
+<html lang="{{ LANGUAGE_CODE }}" dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% trans "Connexion" %}</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+:root{ --accent: #d3b689; }
+</style>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gray-50">
+<div class="max-w-md w-full bg-white rounded-lg shadow p-8">
+<h2 class="text-2xl font-semibold mb-4 text-center">{% trans "Se connecter" %}</h2>
+
+
+{% if form.errors %}
+<div class="mb-4 text-sm text-red-600">{% trans "Nom d'utilisateur ou mot de passe incorrect." %}</div>
+{% endif %}
+
+
+<form method="post" class="space-y-4">
+{% csrf_token %}
+<div>
+{{ form.username.label_tag }}
+{{ form.username }}
+</div>
+<div>
+{{ form.password.label_tag }}
+{{ form.password }}
+</div>
+
+
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<input type="checkbox" name="remember" id="remember">
+<label for="remember" class="text-sm text-gray-600">{% trans "Se souvenir" %}</label>
+</div>
+<a href="{% url 'adminpanel:password_reset' %}" class="text-sm text-[var(--accent)]">{% trans "Mot de passe oublié ?" %}</a>
+</div>
+
+
+<button type="submit" class="w-full py-2 rounded accent-bg text-white font-semibold">{% trans "Connexion" %}</button>
+</form>
+</div>
+</body>
+</html>

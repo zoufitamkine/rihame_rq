@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'adminpanel',
     'store',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -44,12 +45,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',  # doit être après SessionMiddleware
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'django.middleware.locale.LocaleMiddleware',  # doit être après SessionMiddleware
 ]
 
 ROOT_URLCONF = 'ebookstore.urls'
@@ -57,18 +58,24 @@ ROOT_URLCONF = 'ebookstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],            # on peut aussi ajouter ici un chemin global
-        'APP_DIRS': True,      # ✅ doit être True pour lire templates dans les apps
+        'DIRS': [
+            BASE_DIR / "templates",  # templates globaux optionnels
+        ],
+        'APP_DIRS': True,  # <--- très important
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'store.context_processors.language_code',  # Ajoutez ceci
+                'django.template.context_processors.i18n', 
             ],
         },
     },
 ]
+
+
 
 WSGI_APPLICATION = 'ebookstore.wsgi.application'
 
@@ -115,9 +122,9 @@ USE_TZ = True
 
 # langues disponibles
 LANGUAGES = [
-    ('fr', _('French')),
-    ('en', _('English')),
-    ('ar', _('Arabic')),
+    ('fr', 'Français'),
+    ('en', 'English'),
+    ('ar', 'العربية'),
 ]
 
 # Internationalization

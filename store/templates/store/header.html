@@ -1,84 +1,184 @@
 {% load static %}
 {% load i18n %}
-<header class="bg-[var(--primary)] shadow-lg sticky top-0 z-50 backdrop-blur-sm">
-    <div class="container mx-auto px-6 py-5">
+
+<header class="bg-[var(--primary)] shadow-2xl sticky top-0 z-50 backdrop-blur-md border-b border-[var(--accent)]/20">
+    <!-- Effet de lumière animé en arrière-plan -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-1/2 -left-1/4 w-96 h-96 bg-[var(--accent)] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob"></div>
+        <div class="absolute -top-1/2 -right-1/4 w-96 h-96 bg-[var(--text-color)] rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-blob animation-delay-2000"></div>
+    </div>
+
+    <div class="container mx-auto px-6 py-4 relative">
         <div class="flex justify-between items-center">
             
-            <!-- Logo avec animation -->
-            <a href="/" class="group flex items-center gap-3">
+            <!-- Logo avec animation moderne -->
+            <a href="/" class="group flex items-center gap-3 relative z-10">
                 <div class="relative">
-                    <div class="absolute inset-0 bg-[var(--accent)] rounded-lg blur-sm opacity-50 group-hover:opacity-75 transition-opacity duration-300"></div>
-                    <div class="relative bg-gradient-to-br from-[var(--text-color)] to-[var(--text-muted)] p-2 rounded-lg transform group-hover:scale-110 transition-transform duration-300">
-                        <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <!-- Glow effect animé -->
+                    <div class="absolute inset-0 bg-[var(--accent)] rounded-xl blur-md opacity-40 group-hover:opacity-70 transition-all duration-500 group-hover:scale-110"></div>
+                    
+                    <!-- Conteneur du logo avec glassmorphism -->
+                    <div class="relative bg-gradient-to-br from-[var(--text-color)] to-[var(--text-muted)] p-3 rounded-xl transform group-hover:scale-110 group-hover:-rotate-6 transition-all duration-500 shadow-xl border border-white/10">
+                        <svg class="w-7 h-7 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
                         </svg>
                     </div>
                 </div>
-                <h1 class="text-[var(--text-color)] text-2xl font-bold tracking-tight group-hover:text-[var(--text-muted)] transition-colors duration-300">
-                    E-Book Store
-                </h1>
+                
+                <div class="flex flex-col">
+                    <h1 class="text-[var(--text-color)] text-2xl font-bold tracking-tight group-hover:scale-105 transition-all duration-300">
+                        E-Book Store
+                    </h1>
+                    <div class="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-[var(--accent)] to-transparent transition-all duration-500"></div>
+                </div>
             </a>
             
-            <!-- Navigation moderne -->
+            <!-- Navigation moderne avec effets glassmorphism -->
             <nav class="hidden md:block">
                 <ul class="flex items-center space-x-2">
+                    
+                    <!-- Accueil -->
                     <li>
-                        <a href="/" class="relative px-4 py-2 text-[var(--text-color)] font-medium group overflow-hidden rounded-lg">
-                            <span class="relative z-10 group-hover:text-[var(--text-color)] transition-colors duration-300">Accueil</span>
-                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/books" class="relative px-4 py-2 text-[var(--text-color)] font-medium group overflow-hidden rounded-lg">
-                            <span class="relative z-10 group-hover:text-[var(--text-color)] transition-colors duration-300">Livres</span>
-                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/contact" class="relative px-4 py-2 text-[var(--text-color)] font-medium group overflow-hidden rounded-lg">
-                            <span class="relative z-10 group-hover:text-[var(--text-color)] transition-colors duration-300">Contact</span>
-                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
+                        <a href="{% url 'home' %}" class="relative px-5 py-2.5 text-[var(--text-color)] font-medium group overflow-hidden rounded-xl transition-all duration-300 flex items-center gap-2">
+                            <svg class="w-4 h-4 relative z-10 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                            </svg>
+                            <span class="relative z-10 group-hover:text-white transition-colors duration-300">Accueil</span>
+                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-xl shadow-lg"></div>
                         </a>
                     </li>
                     
+                    <!-- Livres -->
+                    <li>
+                        <a href="/books" class="relative px-5 py-2.5 text-[var(--text-color)] font-medium group overflow-hidden rounded-xl transition-all duration-300 flex items-center gap-2">
+                            <svg class="w-4 h-4 relative z-10 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                            </svg>
+                            <span class="relative z-10 group-hover:text-white transition-colors duration-300">Livres</span>
+                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-xl shadow-lg"></div>
+                        </a>
+                    </li>
+                    
+                    <!-- Contact -->
+                    <li>
+                        <a href="/contact" class="relative px-5 py-2.5 text-[var(--text-color)] font-medium group overflow-hidden rounded-xl transition-all duration-300 flex items-center gap-2">
+                            <svg class="w-4 h-4 relative z-10 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                            </svg>
+                            <span class="relative z-10 group-hover:text-white transition-colors duration-300">Contact</span>
+                            <div class="absolute inset-0 bg-[var(--accent)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-xl shadow-lg"></div>
+                        </a>
+                    </li>
+                    
+                    <!-- Divider -->
+                    <li class="mx-1">
+                        <div class="h-8 w-px bg-[var(--accent)]/30"></div>
+                    </li>
+                    
                     <!-- Bouton recherche -->
-                    <li class="ml-2">
-                        <button class="p-2 rounded-lg bg-[var(--accent)] hover:bg-[var(--text-color)] text-[var(--text-color)] hover:text-white transition-all duration-300 transform hover:scale-110">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <li>
+                        <button class="p-2.5 rounded-xl bg-[var(--accent)]/20 hover:bg-[var(--accent)] backdrop-blur-sm text-[var(--text-color)] hover:text-white transition-all duration-300 transform hover:scale-110 hover:rotate-12 border border-[var(--accent)]/30 shadow-lg group">
+                            <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                             </svg>
                         </button>
                     </li>
                     
-                    <form action="{% url 'set_language' %}" method="post">
-  {% csrf_token %}
-  <select name="language">
-    <option value="fr" {% if LANGUAGE_CODE == 'fr' %}selected{% endif %}>Français</option>
-    <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
-    <option value="ar" {% if LANGUAGE_CODE == 'ar' %}selected{% endif %}>العربية</option>
-  </select>
-  <button type="submit">{% trans "Changer" %}</button>
-</form>
-
-                    <!-- Panier -->
+                    <!-- Sélecteur de langue moderne -->
                     <li>
-                        <button class="relative p-2 rounded-lg bg-[var(--text-color)] hover:bg-[var(--text-muted)] text-white transition-all duration-300 transform hover:scale-110">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <form action="{% url 'set_language' %}" method="post" class="relative group">
+                            {% csrf_token %}
+                            <div class="relative">
+                                <!-- Icône globe -->
+                                <svg class="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[var(--text-color)]/70 pointer-events-none group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"/>
+                                </svg>
+                                
+                                <select name="language" 
+                                        onchange="this.form.submit()"
+                                        class="appearance-none bg-[var(--accent)]/20 backdrop-blur-sm border border-[var(--accent)]/30 text-[var(--text-color)] rounded-xl pl-10 pr-10 py-2.5 cursor-pointer hover:bg-[var(--accent)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--accent)] transition-all duration-300 font-medium text-sm shadow-lg hover:scale-105">
+                                    <option value="fr" {% if LANGUAGE_CODE == 'fr' %} selected {% endif %}>Français</option>
+                                    <option value="en" {% if LANGUAGE_CODE == 'en' %} selected {% endif %}>English</option>
+                                    <option value="ar" {% if LANGUAGE_CODE == 'ar' %} selected {% endif %}>العربية</option>
+                                </select>
+                                
+                                <!-- Icône flèche -->
+                                <svg class="absolute right-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-[var(--text-color)]/70 pointer-events-none group-hover:translate-y-0.5 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </div>
+                        </form>
+                    </li>
+                    
+                    <!-- Panier moderne -->
+                    <li>
+                        <button class="relative p-2.5 rounded-xl bg-gradient-to-br from-[var(--text-color)] to-[var(--text-muted)] hover:from-[var(--text-muted)] hover:to-[var(--text-color)] text-white transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-[var(--accent)]/50 group border border-white/10">
+                            <svg class="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"/>
                             </svg>
-                            <span class="absolute -top-1 -right-1 bg-[var(--accent)] text-[var(--text-color)] text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">3</span>
+                            <span class="absolute -top-2 -right-2 bg-[var(--accent)] text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center shadow-lg ring-2 ring-[var(--primary)] animate-pulse">3</span>
                         </button>
                     </li>
                 </ul>
             </nav>
             
-            <!-- Menu mobile -->
-            <button class="md:hidden p-2 rounded-lg bg-[var(--accent)] hover:bg-[var(--text-color)] text-[var(--text-color)] hover:text-white transition-all duration-300">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <!-- Menu mobile moderne -->
+            <button class="md:hidden p-2.5 rounded-xl bg-[var(--accent)]/20 hover:bg-[var(--accent)] backdrop-blur-sm text-[var(--text-color)] hover:text-white transition-all duration-300 transform hover:scale-110 border border-[var(--accent)]/30 shadow-lg group">
+                <svg class="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
                 </svg>
             </button>
             
         </div>
     </div>
+    
+    <!-- Ligne de séparation animée -->
+    <div class="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent opacity-50"></div>
 </header>
+
+<style>
+/* Animation blob pour effet de lumière en arrière-plan */
+@keyframes blob {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    25% {
+        transform: translate(20px, -20px) scale(1.1);
+    }
+    50% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+    75% {
+        transform: translate(20px, 20px) scale(1.05);
+    }
+}
+
+.animate-blob {
+    animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+    animation-delay: 2s;
+}
+
+/* Styles pour le select */
+select option {
+    background-color: var(--primary);
+    color: var(--text-color);
+    padding: 10px;
+}
+
+/* Amélioration du focus pour l'accessibilité */
+select:focus,
+button:focus,
+a:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Animation smooth pour tous les éléments */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+</style>
