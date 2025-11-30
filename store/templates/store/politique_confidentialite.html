@@ -1,0 +1,226 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" 
+      dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Politique de confidentialité" %}</title>
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #F8F7F2;
+            color: #2A2623;
+        }
+        .title-section {
+            @apply text-2xl font-semibold text-[#D3B689] mt-10 mb-3 
+                   border-l-4 border-[#E8D7B8] pl-3;
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex justify-center">
+
+    <div class="max-w-4xl mx-auto mt-14 mb-20 p-10 
+                bg-[#FBFAF7] shadow-xl rounded-2xl border border-[#EFEDE7]">
+
+        <!-- HEADER -->
+        <div class="mb-10">
+            <h1 class="text-4xl font-bold text-[#2A2623] mb-3">
+                {% trans "POLITIQUE DE CONFIDENTIALITÉ" %}
+            </h1>
+
+            <div class="text-sm text-[#8A837B]">
+                <p>{% trans "Dernière mise à jour : 01/01/2026" %}</p>
+                <p>{% trans "Site : www.rihamesquotes.com" %}</p>
+            </div>
+        </div>
+
+        <!-- INTRO -->
+        <p class="leading-relaxed text-lg mb-8">
+            {% trans "Bienvenue sur www.rihamesquotes.com. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos données personnelles lorsque vous utilisez notre site dédié aux e-books, aux livres papier et aux ateliers d'écriture. En utilisant notre site, vous acceptez les pratiques décrites ci-dessous." %}
+        </p>
+
+        <!-- 1 -->
+        <h2 class="title-section">{% trans "1. Responsable du traitement" %}</h2>
+        <p class="mb-4">{% trans "Le responsable du traitement des données personnelles est :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-8">
+            <li>{% trans "Mme Rihame Elyamani" %}</li>
+            <li>{% trans "Email : contact@rihamesquotes.com" %}</li>
+            <li>{% trans "Site : www.rihamesquotes.com" %}</li>
+        </ul>
+
+        <!-- 2 -->
+        <h2 class="title-section">{% trans "2. Données collectées" %}</h2>
+
+        <h3 class="font-semibold text-xl mt-4 mb-2">{% trans "2.1. Données fournies volontairement" %}</h3>
+        <ul class="list-disc pl-6 space-y-1 mb-6">
+            <li>{% trans "Nom et prénom" %}</li>
+            <li>{% trans "Adresse email" %}</li>
+            <li>{% trans "Adresse postale (pour livraison de livres papier)" %}</li>
+            <li>{% trans "Numéro de téléphone (optionnel)" %}</li>
+            <li>{% trans "Informations de paiement (gérées par des prestataires tiers sécurisés)" %}</li>
+            <li>{% trans "Participation aux ateliers d'écriture" %}</li>
+            <li>{% trans "Messages envoyés via les formulaires de contact" %}</li>
+        </ul>
+
+        <h3 class="font-semibold text-xl mt-4 mb-2">{% trans "2.2. Données collectées automatiquement" %}</h3>
+        <ul class="list-disc pl-6 space-y-1 mb-6">
+            <li>{% trans "Adresse IP" %}</li>
+            <li>{% trans "Informations sur l'appareil et le navigateur" %}</li>
+            <li>{% trans "Données de navigation" %}</li>
+            <li>{% trans "Cookies" %}</li>
+            <li>{% trans "Données analytiques (via outils de suivi)" %}</li>
+        </ul>
+
+        <h3 class="font-semibold text-xl mt-4 mb-2">{% trans "2.3. Données liées aux achats" %}</h3>
+        <ul class="list-disc pl-6 space-y-1 mb-8">
+            <li>{% trans "Historique des commandes" %}</li>
+            <li>{% trans "Factures" %}</li>
+            <li>{% trans "Téléchargements d'e-books" %}</li>
+            <li>{% trans "Suivi des ateliers d'écriture" %}</li>
+        </ul>
+
+        <!-- 3 -->
+        <h2 class="title-section">{% trans "3. Finalités du traitement" %}</h2>
+        <p class="mb-6">{% trans "Nous utilisons vos données pour :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-8">
+            <li>{% trans "Traiter et livrer vos commandes" %}</li>
+            <li>{% trans "Gérer votre compte et vos accès" %}</li>
+            <li>{% trans "Fournir vos e-books et ateliers" %}</li>
+            <li>{% trans "Gérer les paiements et la facturation" %}</li>
+            <li>{% trans "Envoyer des emails de confirmation, de support ou d'information" %}</li>
+            <li>{% trans "Répondre à vos demandes" %}</li>
+            <li>{% trans "Améliorer nos contenus, services et offres" %}</li>
+            <li>{% trans "Envoyer des newsletters (avec votre consentement)" %}</li>
+        </ul>
+
+        <!-- 4 -->
+        <h2 class="title-section">{% trans "4. Bases légales (RGPD)" %}</h2>
+        <p class="mb-4">{% trans "Selon le RGPD, les traitements se fondent sur :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-8">
+            <li>{% trans "L'exécution du contrat (achat de livres / ateliers)" %}</li>
+            <li>{% trans "Le consentement (newsletter, cookies, formulaires)" %}</li>
+            <li>{% trans "L'intérêt légitime (statistiques, sécurité)" %}</li>
+            <li>{% trans "Obligations légales (comptabilité, facturation)" %}</li>
+        </ul>
+
+        <!-- 5 -->
+        <h2 class="title-section">{% trans "5. Conformité à la loi marocaine 09-08" %}</h2>
+        <p class="mb-4">{% trans "Conformément à la loi 09-08 :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-4">
+            <li>{% trans "Le traitement se fait avec consentement éclairé" %}</li>
+            <li>{% trans "Les données sont utilisées uniquement pour des objectifs légitimes" %}</li>
+            <li>{% trans "Les utilisateurs disposent de droits :" %}
+                <ul class="list-circle pl-6 mt-2 space-y-1">
+                    <li>{% trans "accès" %}</li>
+                    <li>{% trans "rectification" %}</li>
+                    <li>{% trans "opposition" %}</li>
+                    <li>{% trans "suppression" %}</li>
+                    <li>{% trans "retrait du consentement" %}</li>
+                </ul>
+            </li>
+            <li>{% trans "Les traitements peuvent être soumis à déclaration ou autorisation CNDP (Commission Nationale de Protection des Données à Caractère Personnel)" %}</li>
+        </ul>
+        <p class="mb-8">{% trans "Nous nous engageons à garantir la confidentialité, la sécurité et l'usage limité des données." %}</p>
+
+        <!-- 6 -->
+        <h2 class="title-section">{% trans "6. Cookies" %}</h2>
+        <p class="mb-4">{% trans "Nous utilisons des cookies pour :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-4">
+            <li>{% trans "assurer le bon fonctionnement du site" %}</li>
+            <li>{% trans "mémoriser vos préférences" %}</li>
+            <li>{% trans "faciliter votre expérience utilisateur" %}</li>
+            <li>{% trans "mesurer l'audience du site (Google Analytics ou équivalent)" %}</li>
+        </ul>
+        <p class="mb-8">{% trans "Vous pouvez gérer ou refuser les cookies via votre navigateur." %}</p>
+
+        <!-- 7 -->
+        <h2 class="title-section">{% trans "7. Partage des données" %}</h2>
+        <p class="mb-4">{% trans "Vos données ne sont jamais vendues." %}</p>
+        <p class="mb-4">{% trans "Elles peuvent être partagées uniquement avec :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-4">
+            <li>{% trans "Hébergeur du site" %}</li>
+            <li>{% trans "Prestataires de paiement (Stripe, PayPal…)" %}</li>
+            <li>{% trans "Prestataires d'emailing (Brevo, Mailchimp…)" %}</li>
+            <li>{% trans "Services de livraison (pour livres papier)" %}</li>
+            <li>{% trans "Outils analytiques" %}</li>
+            <li>{% trans "Autorités légales en cas d'obligation" %}</li>
+        </ul>
+        <p class="mb-8">{% trans "Tous les prestataires respectent le RGPD et/ou la loi 09-08." %}</p>
+
+        <!-- 8 -->
+        <h2 class="title-section">{% trans "8. Durée de conservation" %}</h2>
+        <ul class="list-disc pl-6 space-y-1 mb-8">
+            <li>{% trans "Données de compte : tant que le compte est actif" %}</li>
+            <li>{% trans "Données de commande : 10 ans (obligation légale)" %}</li>
+            <li>{% trans "Emails marketing : jusqu'au désabonnement" %}</li>
+            <li>{% trans "Données techniques : durée nécessaire à la sécurité" %}</li>
+        </ul>
+
+        <!-- 9 -->
+        <h2 class="title-section">{% trans "9. Sécurité" %}</h2>
+        <p class="mb-4">{% trans "Nous mettons en place des mesures strictes :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-4">
+            <li>{% trans "cryptage SSL" %}</li>
+            <li>{% trans "protections anti-intrusion" %}</li>
+            <li>{% trans "mots de passe chiffrés" %}</li>
+            <li>{% trans "accès restreint aux données" %}</li>
+            <li>{% trans "sauvegardes régulières" %}</li>
+        </ul>
+        <p class="mb-8">{% trans "Mais aucune transmission via internet n'est totalement infaillible." %}</p>
+
+        <!-- 10 -->
+        <h2 class="title-section">{% trans "10. Vos droits" %}</h2>
+        <p class="mb-4">{% trans "Vous pouvez demander à tout moment :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-4">
+            <li>{% trans "l'accès à vos données" %}</li>
+            <li>{% trans "la rectification" %}</li>
+            <li>{% trans "la suppression (\"droit à l'oubli\")" %}</li>
+            <li>{% trans "l'opposition" %}</li>
+            <li>{% trans "la limitation du traitement" %}</li>
+            <li>{% trans "la portabilité" %}</li>
+            <li>{% trans "le retrait du consentement (newsletter, cookies)" %}</li>
+        </ul>
+        <p class="mb-8">
+            {% trans "Contact pour exercer vos droits :" %} 
+            <span class="font-medium">contact@rihamesquotes.com</span>
+        </p>
+
+        <!-- 11 -->
+        <h2 class="title-section">{% trans "11. Newsletter" %}</h2>
+        <p class="mb-4">{% trans "Vous pouvez vous inscrire librement." %}</p>
+        <p class="mb-4">{% trans "Vous pouvez vous désabonner :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-8">
+            <li>{% trans "via le lien présent dans chaque email" %}</li>
+            <li>{% trans "ou en nous contactant à : contact@rihamesquotes.com" %}</li>
+        </ul>
+
+        <!-- 12 -->
+        <h2 class="title-section">{% trans "12. Transfert international" %}</h2>
+        <p class="mb-4">{% trans "Si des données sont transférées hors Maroc/UE :" %}</p>
+        <ul class="list-disc pl-6 space-y-1 mb-8">
+            <li>{% trans "elles le sont uniquement via des prestataires conformes" %}</li>
+            <li>{% trans "des protections équivalentes au RGPD et à la loi 09-08 sont garanties" %}</li>
+        </ul>
+
+        <!-- 13 -->
+        <h2 class="title-section">{% trans "13. Modification de la politique" %}</h2>
+        <p class="mb-4">{% trans "Cette politique peut être modifiée à tout moment." %}</p>
+        <p class="mb-8">{% trans "La version la plus récente sera publiée ici." %}</p>
+
+        <!-- 14 -->
+        <h2 class="title-section">{% trans "14. Contact" %}</h2>
+        <p class="mb-2">
+            {% trans "Pour toute question liée à cette politique :" %}
+        </p>
+        <p class="font-medium">Rihame Elyamani – contact@rihamesquotes.com – www.rihamesquotes.com</p>
+
+    </div>
+
+</body>
+</html>

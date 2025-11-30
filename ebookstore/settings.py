@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'ckeditor_uploader',
     'adminpanel',
     'store',
     'django.contrib.admin',
@@ -131,7 +133,17 @@ LANGUAGES = [
 # https://docs.djangoproject.com/en/5.1/topics/i18n/
 
 
+CKEDITOR_UPLOAD_PATH = "uploads/ckeditor/"
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Full',
+        'height': 300,
+        'width': 'auto',
+    },
+}
 
 
 

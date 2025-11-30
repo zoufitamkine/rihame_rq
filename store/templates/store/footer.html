@@ -110,11 +110,11 @@
                 
                 <!-- Liens légaux -->
                 <div class="flex gap-6 text-sm">
-                    <a href="#" class="text-[var(--text-color)]/70 hover:text-[var(--text-color)] transition-colors duration-300">
-                        Politique de confidentialité
+                    <a href="{% url 'politique_confidentialite' %}" target="_blank" rel="noopener noreferrer" class="text-[var(--text-color)]/70 hover:text-[var(--text-color)] transition-colors duration-300">
+                        {% trans "Politique de confidentialité" %}
                     </a>
-                    <a href="#" class="text-[var(--text-color)]/70 hover:text-[var(--text-color)] transition-colors duration-300">
-                        Conditions d'utilisation
+                    <a href="{% url 'cgu' %}" target="_blank" rel="noopener noreferrer" class="text-[var(--text-color)]/70 hover:text-[var(--text-color)] transition-colors duration-300">
+                        {% trans "Conditions d’utilisation" %}
                     </a>
                 </div>
                 

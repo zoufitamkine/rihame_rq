@@ -1,0 +1,220 @@
+{% extends 'adminpanel/base.html' %}
+{% load i18n %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-[#F8F7F2] to-[#EFEDE7] py-8 px-4">
+    <div class="max-w-7xl mx-auto">
+        
+        <!-- Header Section -->
+        <div class="bg-white rounded-2xl shadow-lg p-8 mb-6 border-b-4 border-[#D3B689]">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-[#D3B689] to-[#E8D7B8] rounded-2xl flex items-center justify-center shadow-lg">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <h1 class="text-3xl font-bold text-[#2A2623]">{% trans "Gestion des Sliders" %}</h1>
+                        <p class="text-[#8A837B] text-sm mt-1">{% trans "Gérez les sliders de votre page d'accueil" %}</p>
+                    </div>
+                </div>
+                <a href="{% url 'adminpanel:slider_add' %}" 
+                   class="bg-gradient-to-r from-[#D3B689] to-[#C9A97A] text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200 flex items-center gap-2 justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                    </svg>
+                    {% trans "Ajouter un Slider" %}
+                </a>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-[#D3B689]">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-[#8A837B] text-sm font-medium">{% trans "Total Sliders" %}</p>
+                        <p class="text-3xl font-bold text-[#2A2623] mt-2">{{ sliders|length }}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-[#D3B689]/10 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-[#D3B689]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-[#8A837B] text-sm font-medium">{% trans "Sliders Actifs" %}</p>
+                        <p class="text-3xl font-bold text-[#2A2623] mt-2">{{ sliders|length }}</p>
+                    </div>
+                    <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-md p-6 border-l-4 border-blue-500">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-[#8A837B] text-sm font-medium">{% trans "Sliders Inactifs" %}</p>
+                        <p class="text-3xl font-bold text-[#2A2623] mt-2">0</p>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sliders List -->
+        <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+            <!-- Table Header -->
+            <div class="bg-gradient-to-r from-[#D3B689] to-[#E8D7B8] px-6 py-4">
+                <h2 class="text-xl font-semibold text-white flex items-center gap-2">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    {% trans "Liste des Sliders" %}
+                </h2>
+            </div>
+
+            <!-- Table Content -->
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead class="bg-[#FBFAF7] border-b-2 border-[#EFEDE7]">
+                        <tr>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-[#8A837B] uppercase tracking-wider">
+                                {% trans "Image" %}
+                            </th>
+                            <th class="px-6 py-4 text-left text-xs font-semibold text-[#8A837B] uppercase tracking-wider">
+                                {% trans "Titres" %}
+                            </th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-[#8A837B] uppercase tracking-wider">
+                                {% trans "Ordre" %}
+                            </th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-[#8A837B] uppercase tracking-wider">
+                                {% trans "Statut" %}
+                            </th>
+                            <th class="px-6 py-4 text-center text-xs font-semibold text-[#8A837B] uppercase tracking-wider">
+                                {% trans "Actions" %}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-[#EFEDE7]">
+                        {% for s in sliders %}
+                        <tr class="hover:bg-[#FBFAF7] transition-colors">
+                            <!-- Image -->
+                            <td class="px-6 py-4">
+                                <div class="relative group">
+                                    <img src="{{ s.image.url }}" 
+                                         alt="{{ s.title_fr }}"
+                                         class="w-40 h-24 object-cover rounded-xl shadow-md group-hover:shadow-xl transition-shadow border-2 border-[#EFEDE7]">
+                                    <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 rounded-xl transition-all"></div>
+                                </div>
+                            </td>
+
+                            <!-- Titles -->
+                            <td class="px-6 py-4">
+                                <div class="space-y-2">
+                                    <div class="flex items-start gap-2">
+                                        <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-semibold rounded">FR</span>
+                                        <p class="text-sm text-[#2A2623] font-medium">{{ s.title_fr }}</p>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="px-2 py-0.5 bg-green-100 text-green-700 text-xs font-semibold rounded">EN</span>
+                                        <p class="text-sm text-[#2A2623]">{{ s.title_en }}</p>
+                                    </div>
+                                    <div class="flex items-start gap-2">
+                                        <span class="px-2 py-0.5 bg-purple-100 text-purple-700 text-xs font-semibold rounded">AR</span>
+                                        <p class="text-sm text-[#2A2623]" dir="rtl">{{ s.title_ar }}</p>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <!-- Order -->
+                            <td class="px-6 py-4 text-center">
+                                <span class="inline-flex items-center justify-center w-10 h-10 bg-[#D3B689]/20 text-[#D3B689] font-bold rounded-full">
+                                    {{ s.order }}
+                                </span>
+                            </td>
+
+                            <!-- Status -->
+                            <td class="px-6 py-4 text-center">
+                                {% if s.is_active %}
+                                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-green-100 text-green-700 text-sm font-semibold rounded-full">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        {% trans "Actif" %}
+                                    </span>
+                                {% else %}
+                                    <span class="inline-flex items-center gap-1 px-3 py-1 bg-gray-100 text-gray-600 text-sm font-semibold rounded-full">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                                        </svg>
+                                        {% trans "Inactif" %}
+                                    </span>
+                                {% endif %}
+                            </td>
+
+                            <!-- Actions -->
+                            <td class="px-6 py-4">
+                                <div class="flex items-center justify-center gap-2">
+                                    <a href="{% url 'adminpanel:slider_edit' s.id %}" 
+                                       class="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors group relative"
+                                       title="{% trans 'Modifier' %}">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </a>
+                                    <a href="{% url 'adminpanel:slider_delete' s.id %}" 
+                                       class="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-colors group relative"
+                                       onclick="return confirm('{% trans "Êtes-vous sûr de vouloir supprimer ce slider ?" %}')"
+                                       title="{% trans 'Supprimer' %}">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="px-6 py-12 text-center">
+                                <div class="flex flex-col items-center gap-4">
+                                    <div class="w-20 h-20 bg-[#EFEDE7] rounded-full flex items-center justify-center">
+                                        <svg class="w-10 h-10 text-[#8A837B]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <p class="text-lg font-semibold text-[#2A2623] mb-2">{% trans "Aucun slider trouvé" %}</p>
+                                        <p class="text-[#8A837B] mb-4">{% trans "Commencez par ajouter votre premier slider" %}</p>
+                                        <a href="{% url 'adminpanel:slider_add' %}" 
+                                           class="inline-flex items-center gap-2 bg-gradient-to-r from-[#D3B689] to-[#C9A97A] text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg transition-all">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                                            </svg>
+                                            {% trans "Ajouter un Slider" %}
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

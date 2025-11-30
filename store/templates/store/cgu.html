@@ -1,0 +1,452 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE }}" 
+      dir="{% if LANGUAGE_CODE == 'ar' %}rtl{% else %}ltr{% endif %}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Conditions Générales d'Utilisation" %}</title>
+
+    <link href="{% static 'css/tailwind.css' %}" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #F8F7F2 0%, #EFEDE7 100%);
+            color: #2A2623;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .page-wrapper {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 40px 20px;
+        }
+
+        .document-container {
+            width: 100%;
+            max-width: 900px;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(42, 38, 35, 0.12),
+                        0 8px 16px rgba(42, 38, 35, 0.08);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .document-header {
+            background: linear-gradient(135deg, #2A2623 0%, #3d3835 100%);
+            padding: 56px 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #D3B689 0%, #E8D7B8 50%, #D3B689 100%);
+        }
+
+        .document-header::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(211, 182, 137, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .document-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: #FBFAF7;
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            line-height: 1.3;
+            position: relative;
+            z-index: 1;
+        }
+
+        .document-meta {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .meta-item {
+            background: rgba(211, 182, 137, 0.15);
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: #E8D7B8;
+            font-size: 13px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .meta-label {
+            color: #8A837B;
+            margin-right: 6px;
+        }
+
+        .document-body {
+            padding: 48px;
+        }
+
+        .intro-text {
+            background: linear-gradient(135deg, #FBFAF7 0%, #F8F7F2 100%);
+            border-left: 5px solid #D3B689;
+            padding: 28px 32px;
+            margin-bottom: 48px;
+            font-size: 15px;
+            line-height: 1.9;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(42, 38, 35, 0.04);
+        }
+
+        .section {
+            margin-bottom: 36px;
+            padding: 24px;
+            background: #FBFAF7;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .section:hover {
+            background: #F8F7F2;
+            box-shadow: 0 4px 12px rgba(42, 38, 35, 0.06);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .section-num {
+            font-size: 16px;
+            font-weight: 800;
+            color: #D3B689;
+            background: linear-gradient(135deg, rgba(211, 182, 137, 0.2) 0%, rgba(211, 182, 137, 0.1) 100%);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #2A2623;
+            line-height: 1.4;
+        }
+
+        .section-content {
+            margin-left: 60px;
+            color: #2A2623;
+            font-size: 14.5px;
+            line-height: 1.8;
+        }
+
+        .section-content p {
+            margin-bottom: 12px;
+        }
+
+        .section-content ul {
+            margin-top: 12px;
+            margin-bottom: 12px;
+        }
+
+        .section-content li {
+            margin-bottom: 10px;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        .section-content li:before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: #D3B689;
+            font-weight: 700;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, #2A2623 0%, #3d3835 100%);
+            margin: 48px -24px -24px -24px;
+            padding: 36px 36px;
+            border-radius: 0 0 16px 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #D3B689 0%, #E8D7B8 50%, #D3B689 100%);
+        }
+
+        .contact-section .section-num {
+            background: rgba(211, 182, 137, 0.2);
+            color: #D3B689;
+        }
+
+        .contact-section .section-title {
+            color: #FBFAF7;
+        }
+
+        .contact-section .section-content {
+            color: #E8D7B8;
+        }
+
+        @media (max-width: 768px) {
+            .document-header {
+                padding: 40px 28px;
+            }
+
+            .document-title {
+                font-size: 22px;
+            }
+
+            .document-body {
+                padding: 32px 24px;
+            }
+
+            .section {
+                padding: 20px;
+            }
+
+            .section-content {
+                margin-left: 0;
+                margin-top: 12px;
+            }
+
+            .intro-text {
+                padding: 20px 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <div class="document-container">
+            
+            <!-- HEADER -->
+            <div class="document-header">
+                <h1 class="document-title">
+                    CONDITIONS GÉNÉRALES D'UTILISATION (CGU)
+                </h1>
+                <div class="document-meta">
+                    <div class="meta-item">
+                        <span class="meta-label">Dernière mise à jour :</span>
+                        01/01/2026
+                    </div>
+                    <div class="meta-item">
+                        <span class="meta-label">Site :</span>
+                        www.rihamesquotes.com
+                    </div>
+                </div>
+            </div>
+
+            <!-- BODY -->
+            <div class="document-body">
+                
+                <!-- INTRO -->
+                <div class="intro-text">
+                        Les présentes Conditions Générales d'Utilisation (ci-après « CGU ») ont pour objet de définir les conditions d'accès et d'utilisation du site www.rihamesquotes.com, appartenant à Mme Rihame Elyamani. En accédant au site, l'utilisateur accepte sans réserve les présentes CGU.
+                    </div>
+
+                    <!-- SECTION 1 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">01</span>
+                            <h2 class="section-title">Objet du site</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Le site www.rihamesquotes.com propose :</p>
+                            <ul>
+                                <li>la vente de livres électroniques (e-books)</li>
+                                <li>la vente de livres papier</li>
+                                <li>l'accès et l'inscription à des ateliers d'écriture</li>
+                                <li>du contenu éditorial et informatif autour de l'écriture et du développement personnel</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 2 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">02</span>
+                            <h2 class="section-title">Accès au site</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Le site est accessible gratuitement à tout utilisateur disposant d'une connexion internet. Certaines sections nécessitent la création d'un compte.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 3 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">03</span>
+                            <h2 class="section-title">Création de compte</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>L'utilisateur s'engage à fournir des informations exactes, à jour et à ne pas partager ses identifiants.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 4 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">04</span>
+                            <h2 class="section-title">Utilisation du site</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>L'utilisateur s'engage à ne pas utiliser le site à des fins illicites, frauduleuses ou nuisibles.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 5 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">05</span>
+                            <h2 class="section-title">Propriété intellectuelle</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Tous les contenus du site sont protégés par les droits d'auteur et appartiennent à Mme Rihame Elyamani.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 6 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">06</span>
+                            <h2 class="section-title">Produits et services</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Les e-books achetés sont destinés à un usage personnel. Les ateliers sont accessibles après inscription.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 7 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">07</span>
+                            <h2 class="section-title">Paiement</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Les paiements sont sécurisés via des prestataires externes. Aucune donnée bancaire n'est stockée.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 8 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">08</span>
+                            <h2 class="section-title">Données personnelles</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Les données sont traitées conformément au RGPD et à la loi marocaine 09-08.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 9 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">09</span>
+                            <h2 class="section-title">Responsabilité</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Le site ne garantit pas l'absence d'erreurs, d'interruptions ou de défaillances techniques.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 10 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">10</span>
+                            <h2 class="section-title">Liens externes</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Nous ne sommes pas responsables du contenu ou des pratiques des sites tiers.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 11 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">11</span>
+                            <h2 class="section-title">Modification des CGU</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Les CGU peuvent être modifiées à tout moment. La version la plus récente fera foi.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 12 -->
+                    <div class="section">
+                        <div class="section-header">
+                            <span class="section-num">12</span>
+                            <h2 class="section-title">Droit applicable</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Les CGU sont soumises au droit marocain.</p>
+                        </div>
+                    </div>
+
+                    <!-- SECTION 13 - CONTACT -->
+                    <div class="contact-section">
+                        <div class="section-header">
+                            <span class="section-num">13</span>
+                            <h2 class="section-title">Contact</h2>
+                        </div>
+                        <div class="section-content">
+                            <p>Mme Rihame Elyamani – contact@rihamesquotes.com – www.rihamesquotes.com</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

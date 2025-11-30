@@ -21,3 +21,22 @@ class LoginForm(AuthenticationForm):
             'placeholder': _('Password')
         })
     )
+
+
+from django import forms
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from .models import Slider
+
+class SliderForm(forms.ModelForm):
+    description_fr = forms.CharField(widget=CKEditorUploadingWidget(), required=False)
+    description_en = forms.CharField(widget=CKEditorUploadingWidget(), required=False)
+    description_ar = forms.CharField(widget=CKEditorUploadingWidget(), required=False)
+
+    class Meta:
+        model = Slider
+        fields = [
+            'image',
+            'title_fr', 'title_en', 'title_ar',
+            'description_fr', 'description_en', 'description_ar',
+            'order', 'is_active'
+        ]
